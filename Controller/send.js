@@ -126,11 +126,7 @@ var decorator = module.exports = function (options, protect) {
     if (documents) pipeline(es.readArray([].concat(documents)));
     // Otherwise, stream the relevant documents from Mongo, based on constructed query.
     else {
-      if (request.baucis.query.op === 'findOne') {
-        pipeline(request.baucis.query.stream()); // findOne do not support cursor
-      } else {
-        pipeline(request.baucis.query.cursor());
-      }
+      request.baucis.query.cursor()
     }    
     // Map documents to contexts.
     pipeline(function (doc, callback) {
@@ -178,11 +174,7 @@ var decorator = module.exports = function (options, protect) {
     if (documents) pipeline(es.readArray([].concat(documents)));
     // Otherwise, stream the relevant documents from Mongo, based on constructed query.
     else {
-      if (request.baucis.query.op === 'findOne') {
-        pipeline(request.baucis.query.stream()); // findOne do not support cursor
-      } else {
-        pipeline(request.baucis.query.cursor());
-      }
+      request.baucis.query.cursor()
     } 
     // Map documents to contexts.
     pipeline(function (doc, callback) {
